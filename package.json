@@ -6,11 +6,11 @@
     "dev": "ts-node src/main.ts",
     "start": "node dist/src/main.js",
     "build": "tsc",
-    "lint": "npx eslint .",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest",
-    "test:unit": "npx jest ./test/unit",
-    "test:integration": "npx jest ./test/integration"
+    "test:unit": "jest ./test/unit",
+    "test:integration": "jest ./test/integration"
   },
   "repository": {
     "type": "git",
