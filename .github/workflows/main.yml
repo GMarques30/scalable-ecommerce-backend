@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm install
+        run: npm install --only=dev
       - name: Check if node_modules exists
         run: |
           if [ ! -d "node_modules" ]; then
