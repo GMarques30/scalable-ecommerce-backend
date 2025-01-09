@@ -16,6 +16,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm install
+      - name: Check if node_modules exists
+        run: |
+          if [ ! -d "node_modules" ]; then
+            echo "node_modules does not exist!"
+            exit 1
+          else
+            echo "node_modules exists."
+          fi
       - name: Build application
         run: |
           echo "Building application..."
