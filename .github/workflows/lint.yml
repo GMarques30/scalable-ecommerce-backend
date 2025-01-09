@@ -1,0 +1,26 @@
+name: Lint code
+
+on:
+  workflow_run:
+    workflows:
+      - Build application
+    types:
+      - completed
+
+jobs:
+  lint:
+    name: Lint code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: node_modules
+      - name: Run linter
+        run: npm run lint

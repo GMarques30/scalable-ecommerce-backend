@@ -1,0 +1,25 @@
+name: Build application
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: Build application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build application
+        run: |
+          echo: "Building application..."
+          npm run build
+      - name: Upload dependencies as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: node_modules
+          path: node_modules/
