@@ -1,8 +1,8 @@
-const eslintPluginPrettier = require('eslint-plugin-prettier');
-const eslintPluginTypeScript = require('@typescript-eslint/eslint-plugin');
-const eslintParserTypeScript = require('@typescript-eslint/parser');
+const eslintPluginPrettier = require('eslint-plugin-prettier')
+const eslintPluginTypeScript = require('@typescript-eslint/eslint-plugin')
+const eslintParserTypeScript = require('@typescript-eslint/parser')
 
-module.export = [
+module.exports = [
   {
     files: ['**/*.ts'],
     ignores: ['node_modules/**', 'dist/**'],
@@ -19,4 +19,4 @@ module.export = [
       'prefer-const': 'off'
     }
   }
-];
+]

@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  api:
+    container_name: scalable-ecommerce-backend
+    build:
+      context: ./
+    ports:
+      - 3000:3000
+    depends_on:
+      postgres:
+        condition: service_started
+    env_file:
+      - ./.env
+    networks:
+      - scalable_ecommerce-backend
+
+  postgres:
+    image: postgres:14.3-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: app
+    ports:
+      - 5432:5432
+    networks:
+      - scalable_ecommerce-backend
+    volumes:
+      - ./resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
+
+  networks:
+    picpay_backend-network:
+      driver: bridge
