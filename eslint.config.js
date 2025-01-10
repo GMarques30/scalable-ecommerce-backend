@@ -2,7 +2,7 @@ const eslintPluginPrettier = require('eslint-plugin-prettier')
 const eslintPluginTypeScript = require('@typescript-eslint/eslint-plugin')
 const eslintParserTypeScript = require('@typescript-eslint/parser')
 
-module.exports = [
+module.export = [
   {
     files: ['**/*.ts'],
     ignores: ['node_modules/**', 'dist/**'],

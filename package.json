@@ -8,9 +8,9 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest",
     "test:unit": "jest ./test/unit",
-    "test:integration": "jest ./test/integration"
+    "test:integration": "jest ./test",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
