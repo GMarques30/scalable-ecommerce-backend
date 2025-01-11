@@ -11,6 +11,7 @@ import { DeleteProduct } from './product-catalog/application/usecase/DeleteProdu
 import { FetchCategories } from './product-catalog/application/usecase/FetchCategories'
 import { FetchProductDetails } from './product-catalog/application/usecase/FetchProductDetails'
 import { FetchProducts } from './product-catalog/application/usecase/FetchProducts'
+import { UpdateProduct } from './product-catalog/application/usecase/UpdateProduct'
 import { ProductCatalogController } from './product-catalog/infra/controller/ProductCatalogController'
 import { ProductCatalogDAODatabase } from './product-catalog/infra/dao/ProductCatalogDAODatabase'
 import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/repository/ProductCatalogRepositoryDatabase'
@@ -34,6 +35,7 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
   const fetchProducts = new FetchProducts(productCatalogDAO)
   const deleteProduct = new DeleteProduct(productCatalogRepository)
   const fetchProductDetails = new FetchProductDetails(productCatalogDAO)
+  const updateProduct = new UpdateProduct(productCatalogRepository)
 
   new AccountControler(httpServer, createAccount, authenticate)
   new ProductCatalogController(
@@ -42,7 +44,8 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
     createProduct,
     fetchProducts,
     deleteProduct,
-    fetchProductDetails
+    fetchProductDetails,
+    updateProduct
   )
 
   httpServer.listen(Number(process.env.PORT))
