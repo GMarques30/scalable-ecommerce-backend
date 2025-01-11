@@ -8,6 +8,29 @@ export class ProductCatalogDAODatabase implements ProductCatalogDAO {
     this.connection = databaseConnection
   }
 
+  async findByProductId(productId: string): Promise<{
+    productId: string
+    name: string
+    category: string
+    createdAt: Date
+    updatedAt: Date
+  }> {
+    const [product] = await this.connection.query(
+      'SELECT * FROM products_catalog WHERE product_id = $1',
+      [productId]
+    )
+    if (!product) {
+      throw new Error('Product not found.')
+    }
+    return {
+      productId: product.product_id,
+      name: product.name,
+      category: product.category,
+      createdAt: product.created_at,
+      updatedAt: product.updatedAt
+    }
+  }
+
   async findAllProducts(): Promise<
     {
       productId: string

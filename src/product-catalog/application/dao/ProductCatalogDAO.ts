@@ -15,4 +15,11 @@ export interface ProductCatalogDAO {
     createdAt: Date
     updatedAt: Date
   }): Promise<void>
+  findByProductId(productId: string): Promise<{
+    productId: string
+    name: string
+    category: string
+    createdAt: Date
+    updatedAt: Date
+  }>
 }
