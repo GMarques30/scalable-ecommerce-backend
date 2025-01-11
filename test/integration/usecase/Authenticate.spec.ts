@@ -1,11 +1,11 @@
-import { Account } from '../../../src/domain/entity/Account'
-import { AuthProvider } from '../../../src/infra/auth/AuthProvider'
-import { AccountRepository } from './../../../src/application/repository/AccountRepository'
-import { Authenticate } from './../../../src/application/usecase/Authenticate'
-import { JWTAdapter } from './../../../src/infra/auth/JWTAdapter'
+import { AccountRepository } from '../../../src/account/application/repository/AccountRepository'
+import { Account } from '../../../src/account/domain/entity/Account'
+import { Authenticate } from './../../../src/account/application/usecase/Authenticate'
+import { AuthProvider } from './../../../src/account/infra/auth/AuthProvider'
+import { JWTAdapter } from './../../../src/account/infra/auth/JWTAdapter'
 import { AccountRepositoryMemory } from './../../infra/repository/AccountRepositoryMemory'
 
-jest.mock('./../../../src/infra/auth/JWTAdapter', () => {
+jest.mock('./../../../src/account/infra/auth/JWTAdapter', () => {
   return {
     JWTAdapter: jest.fn().mockImplementation(() => {
       return {
