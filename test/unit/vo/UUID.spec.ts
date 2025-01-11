@@ -1,4 +1,4 @@
-import { UUID } from '../../../src/domain/vo/UUID'
+import { UUID } from '../../../src/account/domain/vo/UUID'
 
 test.each([
   '123e4567-e89b-12d3-a456-426614174000',

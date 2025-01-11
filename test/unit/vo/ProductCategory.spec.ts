@@ -1,4 +1,4 @@
-import { ProductCategory } from '../../../src/domain/vo/ProductCategory'
+import { ProductCategory } from '../../../src/product-catalog/domain/vo/ProductCategory'
 
 test.each(['ELECTRONICS', 'CLOTHING', 'APPLIANCES', 'BOOKS', 'BEAUTY'])(
   'Must be possible to create a valid category',

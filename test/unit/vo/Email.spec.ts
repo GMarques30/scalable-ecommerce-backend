@@ -1,4 +1,4 @@
-import { Email } from './../../../src/domain/vo/Email'
+import { Email } from './../../../src/account/domain/vo/Email'
 
 test.each([
   'exemplo@dominio.com',

@@ -1,4 +1,4 @@
-import { FetchCategories } from './../../../src/application/usecase/FetchCategories'
+import { FetchCategories } from './../../../src/product-catalog/application/usecase/FetchCategories'
 
 let sut: FetchCategories
 

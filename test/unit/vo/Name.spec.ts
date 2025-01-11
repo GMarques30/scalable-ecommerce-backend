@@ -1,4 +1,4 @@
-import { Name } from './../../../src/domain/vo/Name'
+import { Name } from './../../../src/account/domain/vo/Name'
 
 test.each([
   ['João', 'Silva'],

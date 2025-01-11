@@ -1,5 +1,5 @@
-import { AccountRepository } from './../../../src/application/repository/AccountRepository'
-import { CreateAccount } from './../../../src/application/usecase/CreateAccount'
+import { AccountRepository } from './../../../src/account/application/repository/AccountRepository'
+import { CreateAccount } from './../../../src/account/application/usecase/CreateAccount'
 import { AccountRepositoryMemory } from './../../infra/repository/AccountRepositoryMemory'
 
 let accountRepository: AccountRepository

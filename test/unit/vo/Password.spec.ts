@@ -1,5 +1,5 @@
 import crypto from 'node:crypto'
-import { Password } from './../../../src/domain/vo/Password'
+import { Password } from './../../../src/account/domain/vo/Password'
 
 test.each(['Abc@123', 'XyZ!987', 'Pa$$word1', 'Passw@ord', 'A1b@cD2'])(
   'Should check that it is a valid password',
