@@ -29,7 +29,7 @@ beforeEach(() => {
   )
 })
 
-test('Deve ser possivel se autenticar', async function () {
+test('Should be able to log in', async function () {
   const input = {
     email: 'john.doe@example.com',
     password: 'John@123'
@@ -39,7 +39,7 @@ test('Deve ser possivel se autenticar', async function () {
   expect(result.token).toEqual(expect.any(String))
 })
 
-test('Deve lançar um erro caso a conta não seja encontrada', function () {
+test('Should throw an error if the account is not found', function () {
   const input = {
     email: 'non-existent@example.com',
     password: 'John@123'
@@ -49,7 +49,7 @@ test('Deve lançar um erro caso a conta não seja encontrada', function () {
   )
 })
 
-test('Deve lançar um erro caso a senha não seja igual', function () {
+test('Should throw an error if the password is not the same', function () {
   const input = {
     email: 'john.doe@example.com',
     password: 'Invalid@123'

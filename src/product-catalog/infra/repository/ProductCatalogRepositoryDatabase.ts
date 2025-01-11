@@ -47,4 +47,11 @@ export class ProductCatalogRepositoryDatabase
       [productId]
     )
   }
+
+  async update(product: Product): Promise<void> {
+    await this.connection.query(
+      'UPDATE products_catalog SET name = $2, category = $3 WHERE product_id = $1',
+      [product.getProductId(), product.getName(), product.getCategory()]
+    )
+  }
 }

@@ -10,7 +10,7 @@ beforeEach(() => {
   sut = new FetchProductDetails(productCatalogDAO)
 })
 
-test('Deve ser possivel obter os detalhes de um produto com sucesso', async function () {
+test('Must be possible to obtain the details of a product successfully', async function () {
   const product = {
     productId: crypto.randomUUID(),
     name: 'Notebook',
@@ -34,7 +34,7 @@ test('Deve ser possivel obter os detalhes de um produto com sucesso', async func
   )
 })
 
-test('Não deve ser possivel obter os detalhes de um produto inexistente', async function () {
+test('Should not be possible to get the details of a non-existent product', async function () {
   const input = {
     productId: crypto.randomUUID()
   }

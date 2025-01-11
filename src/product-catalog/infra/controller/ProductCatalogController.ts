@@ -4,6 +4,7 @@ import { DeleteProduct } from '../../application/usecase/DeleteProduct'
 import { FetchCategories } from '../../application/usecase/FetchCategories'
 import { FetchProductDetails } from '../../application/usecase/FetchProductDetails'
 import { FetchProducts } from '../../application/usecase/FetchProducts'
+import { UpdateProduct } from './../../application/usecase/UpdateProduct'
 
 export class ProductCatalogController {
   constructor(
@@ -12,7 +13,8 @@ export class ProductCatalogController {
     private readonly createProduct: CreateProduct,
     private readonly fetchProducts: FetchProducts,
     private readonly deleteProduct: DeleteProduct,
-    private readonly fetchProductDetails: FetchProductDetails
+    private readonly fetchProductDetails: FetchProductDetails,
+    private readonly updateProduct: UpdateProduct
   ) {
     this.server.register(
       'get',
@@ -57,6 +59,19 @@ export class ProductCatalogController {
           productId: params.productId
         }
         return await fetchProductDetails.execute(input)
+      }
+    )
+
+    this.server.register(
+      'put',
+      '/products/:productId',
+      async function (params: any, body: any) {
+        const input = {
+          productId: params.productId,
+          name: body.name,
+          category: body.category
+        }
+        return await updateProduct.execute(input)
       }
     )
   }

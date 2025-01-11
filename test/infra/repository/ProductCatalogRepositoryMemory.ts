@@ -16,6 +16,19 @@ export class ProductCatalogRepositoryMemory
     this.products = []
   }
 
+  async update(product: Product): Promise<void> {
+    const index = this.products.findIndex(
+      data => data.productId === product.getProductId()
+    )
+    this.products[index] = {
+      productId: product.getProductId(),
+      name: product.getName(),
+      category: product.getCategory(),
+      createdAt: product.getCreatedAt(),
+      updatedAt: product.getUpdatedAt()
+    }
+  }
+
   async save(product: Product): Promise<void> {
     this.products.push({
       productId: product.getProductId(),

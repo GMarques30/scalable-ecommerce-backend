@@ -11,7 +11,7 @@ beforeEach(() => {
   sut = new DeleteProduct(productCatalogRepository)
 })
 
-test('Deve ser possivel deletar um produto com sucesso', async function () {
+test('Must be possible to delete a product successfully', async function () {
   const product = Product.create('Notebook', 'ELECTRONICS')
   productCatalogRepository.save(product)
   const input = {
@@ -23,7 +23,7 @@ test('Deve ser possivel deletar um produto com sucesso', async function () {
   ).rejects.toThrow(new Error('Product not found.'))
 })
 
-test('Deve ser possivel lançar um erro caso o produto não seja encontrado', function () {
+test('Should be possible to throw an error if the product is not found', function () {
   const input = {
     productId: crypto.randomUUID()
   }

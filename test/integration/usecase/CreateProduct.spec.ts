@@ -10,7 +10,7 @@ beforeEach(() => {
   sut = new CreateProduct(productCatalogRepository)
 })
 
-test('Deve ser possivel criar um produto com sucesso', async function () {
+test('Must be possible to create a successful product', async function () {
   const input = {
     name: 'Notebook',
     category: 'ELECTRONICS'
