@@ -34,8 +34,8 @@ export class Product {
     productId: string,
     name: string,
     category: string,
-    createdAt: string,
-    updatedAt: string
+    createdAt: Date,
+    updatedAt: Date
   ) {
     const productIdValueObject = UUID.restore(productId)
     const productCategory = new ProductCategory(category)

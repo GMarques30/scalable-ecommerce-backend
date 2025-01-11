@@ -14,8 +14,8 @@ test('Must be possible to create a successful product', function () {
 
 test('Must be possible to restore the product status', function () {
   const productId = crypto.randomUUID()
-  const createdAt = '2025-01-11T01:19:35.660Z'
-  const updatedAt = '2025-01-12T01:19:35.660Z'
+  const createdAt = new Date('2025-01-11T01:19:35.660Z')
+  const updatedAt = new Date('2025-01-12T01:19:35.660Z')
   const product = Product.restore(
     productId,
     'Notebook',

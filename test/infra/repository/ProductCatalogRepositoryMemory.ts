@@ -25,4 +25,30 @@ export class ProductCatalogRepositoryMemory
       updatedAt: product.getUpdatedAt()
     })
   }
+
+  async findByProductId(productId: string): Promise<Product> {
+    const data = this.products.find(
+      productData => productData.productId === productId
+    )
+    if (!data) {
+      throw new Error('Product not found.')
+    }
+    return Product.restore(
+      data.productId,
+      data.name,
+      data.category,
+      data.createdAt,
+      data.updatedAt
+    )
+  }
+
+  async remove(productId: string): Promise<void> {
+    const index = this.products.findIndex(
+      product => product.productId === productId
+    )
+    if (index === -1) {
+      return
+    }
+    this.products.splice(index, 1)
+  }
 }

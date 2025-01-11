@@ -23,4 +23,28 @@ export class ProductCatalogRepositoryDatabase
       ]
     )
   }
+
+  async findByProductId(productId: string): Promise<Product> {
+    const [product] = await this.connection.query(
+      'SELECT * FROM products_catalog WHERE product_id = $1',
+      [productId]
+    )
+    if (!product) {
+      throw new Error('Product not found.')
+    }
+    return Product.restore(
+      product.product_id,
+      product.name,
+      product.category,
+      product.created_at,
+      product.updated_at
+    )
+  }
+
+  async remove(productId: string): Promise<void> {
+    await this.connection.query(
+      'DELETE FROM products_catalog WHERE product_id = $1',
+      [productId]
+    )
+  }
 }

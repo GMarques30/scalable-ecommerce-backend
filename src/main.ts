@@ -7,6 +7,7 @@ import { PgPromiseAdapter } from './account/infra/database/PgPromiseAdapter'
 import { ExpressAdapter } from './account/infra/http/ExpressAdapter'
 import { AccountRepositoryDatabase } from './account/infra/repository/AccountRepositoryDatabase'
 import { CreateProduct } from './product-catalog/application/usecase/CreateProduct'
+import { DeleteProduct } from './product-catalog/application/usecase/DeleteProduct'
 import { FetchCategories } from './product-catalog/application/usecase/FetchCategories'
 import { FetchProducts } from './product-catalog/application/usecase/FetchProducts'
 import { ProductCatalogController } from './product-catalog/infra/controller/ProductCatalogController'
@@ -30,13 +31,15 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
   const fetchCategories = new FetchCategories()
   const createProduct = new CreateProduct(productCatalogRepository)
   const fetchProducts = new FetchProducts(productCatalogDAO)
+  const deleteProduct = new DeleteProduct(productCatalogRepository)
 
   new AccountControler(httpServer, createAccount, authenticate)
   new ProductCatalogController(
     httpServer,
     fetchCategories,
     createProduct,
-    fetchProducts
+    fetchProducts,
+    deleteProduct
   )
 
   httpServer.listen(Number(process.env.PORT))

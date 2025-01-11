@@ -1,5 +1,6 @@
 import { HttpServer } from '../../../account/infra/http/HttpServer'
 import { CreateProduct } from '../../application/usecase/CreateProduct'
+import { DeleteProduct } from '../../application/usecase/DeleteProduct'
 import { FetchCategories } from '../../application/usecase/FetchCategories'
 import { FetchProducts } from '../../application/usecase/FetchProducts'
 
@@ -8,7 +9,8 @@ export class ProductCatalogController {
     private readonly server: HttpServer,
     private readonly fetchCategories: FetchCategories,
     private readonly createProduct: CreateProduct,
-    private readonly fetchProducts: FetchProducts
+    private readonly fetchProducts: FetchProducts,
+    private readonly deleteProduct: DeleteProduct
   ) {
     this.server.register(
       'get',
@@ -31,6 +33,17 @@ export class ProductCatalogController {
       '/products',
       async function (params: any, body: any) {
         return await fetchProducts.execute()
+      }
+    )
+
+    this.server.register(
+      'delete',
+      '/products/:productId',
+      async function (params: any, body: any) {
+        const input = {
+          productId: params.productId
+        }
+        return await deleteProduct.execute(input)
       }
     )
   }
