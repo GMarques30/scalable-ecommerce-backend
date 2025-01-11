@@ -1,7 +1,7 @@
+import { HttpServer } from '../../../account/infra/http/HttpServer'
 import { FetchCategories } from '../../application/usecase/FetchCategories'
-import { HttpServer } from '../http/HttpServer'
 
-export class CatalogController {
+export class ProductCatalogController {
   constructor(
     private readonly server: HttpServer,
     private readonly fetchCategories: FetchCategories

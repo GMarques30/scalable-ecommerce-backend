@@ -1,5 +1,5 @@
+import { UUID } from '../../../account/domain/vo/UUID'
 import { ProductCategory } from '../vo/ProductCategory'
-import { UUID } from '../vo/UUID'
 
 export class Product {
   private readonly productId: UUID

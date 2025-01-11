@@ -1,6 +1,6 @@
 import { Authenticate } from '../../application/usecase/Authenticate'
 import { CreateAccount } from '../../application/usecase/CreateAccount'
-import { HttpServer } from './../http/HttpServer'
+import { HttpServer } from '../http/HttpServer'
 
 export class AccountControler {
   constructor(

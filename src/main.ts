@@ -1,13 +1,13 @@
 import 'dotenv/config'
-import { Authenticate } from './application/usecase/Authenticate'
-import { CreateAccount } from './application/usecase/CreateAccount'
-import { FetchCategories } from './application/usecase/FetchCategories'
-import { JWTAdapter } from './infra/auth/JWTAdapter'
-import { AccountControler } from './infra/controller/AccountController'
-import { CatalogController } from './infra/controller/CatalogController'
-import { PgPromiseAdapter } from './infra/database/PgPromiseAdapter'
-import { ExpressAdapter } from './infra/http/ExpressAdapter'
-import { AccountRepositoryDatabase } from './infra/repository/AccountRepositoryDatabase'
+import { Authenticate } from './account/application/usecase/Authenticate'
+import { CreateAccount } from './account/application/usecase/CreateAccount'
+import { JWTAdapter } from './account/infra/auth/JWTAdapter'
+import { AccountControler } from './account/infra/controller/AccountController'
+import { PgPromiseAdapter } from './account/infra/database/PgPromiseAdapter'
+import { ExpressAdapter } from './account/infra/http/ExpressAdapter'
+import { AccountRepositoryDatabase } from './account/infra/repository/AccountRepositoryDatabase'
+import { FetchCategories } from './product-catalog/application/usecase/FetchCategories'
+import { ProductCatalogController } from './product-catalog/infra/controller/ProductCatalogController'
 ;(async () => {
   const httpServer = new ExpressAdapter()
 
@@ -21,7 +21,7 @@ import { AccountRepositoryDatabase } from './infra/repository/AccountRepositoryD
   const fetchCategories = new FetchCategories()
 
   new AccountControler(httpServer, createAccount, authenticate)
-  new CatalogController(httpServer, fetchCategories)
+  new ProductCatalogController(httpServer, fetchCategories)
 
   httpServer.listen(Number(process.env.PORT))
 })()
