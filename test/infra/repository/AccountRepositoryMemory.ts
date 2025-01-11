@@ -1,5 +1,5 @@
-import { AccountRepository } from '../../../src/application/repository/AccountRepository'
-import { Account } from '../../../src/domain/entity/Account'
+import { AccountRepository } from '../../../src/account/application/repository/AccountRepository'
+import { Account } from '../../../src/account/domain/entity/Account'
 
 export class AccountRepositoryMemory implements AccountRepository {
   private readonly accounts: {

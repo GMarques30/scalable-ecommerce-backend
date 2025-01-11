@@ -1,4 +1,4 @@
-import { Product } from './../../../src/domain/entity/Product'
+import { Product } from './../../../src/product-catalog/domain/entity/Product'
 
 test('Must be possible to create a successful product', function () {
   const product = Product.create('Notebook', 'ELECTRONICS')

@@ -1,5 +1,5 @@
 import crypto from 'node:crypto'
-import { Account } from '../../../src/domain/entity/Account'
+import { Account } from '../../../src/account/domain/entity/Account'
 
 test('Should be possible to create an account successfully', function () {
   const account = Account.create(
