@@ -1,12 +1,14 @@
 import { HttpServer } from '../../../account/infra/http/HttpServer'
 import { CreateProduct } from '../../application/usecase/CreateProduct'
 import { FetchCategories } from '../../application/usecase/FetchCategories'
+import { FetchProducts } from '../../application/usecase/FetchProducts'
 
 export class ProductCatalogController {
   constructor(
     private readonly server: HttpServer,
     private readonly fetchCategories: FetchCategories,
-    private readonly createProduct: CreateProduct
+    private readonly createProduct: CreateProduct,
+    private readonly fetchProducts: FetchProducts
   ) {
     this.server.register(
       'get',
@@ -21,6 +23,14 @@ export class ProductCatalogController {
       '/products',
       async function (params: any, body: any) {
         return await createProduct.execute(body)
+      }
+    )
+
+    this.server.register(
+      'get',
+      '/products',
+      async function (params: any, body: any) {
+        return await fetchProducts.execute()
       }
     )
   }

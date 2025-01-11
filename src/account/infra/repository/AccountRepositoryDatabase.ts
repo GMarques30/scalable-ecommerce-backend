@@ -30,6 +30,12 @@ export class AccountRepositoryDatabase implements AccountRepository {
     if (!account) {
       return null
     }
-    return account
+    return Account.restore(
+      account.accountId,
+      account.first_name,
+      account.last_name,
+      account.email,
+      account.password
+    )
   }
 }
