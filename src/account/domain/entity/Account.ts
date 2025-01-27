@@ -27,7 +27,7 @@ export class Account {
     email: string,
     password: string
   ): Account {
-    const accountId = UUID.create()
+    const accountId = new UUID(crypto.randomUUID())
     const name = new Name(firstName, lastName)
     const emailValueObject = new Email(email)
     const passwordValueObject = Password.create(password)
@@ -41,7 +41,7 @@ export class Account {
     email: string,
     password: string
   ): Account {
-    const accountIdValueObject = UUID.restore(accountId)
+    const accountIdValueObject = new UUID(accountId)
     const name = new Name(firstName, lastName)
     const emailValueObject = new Email(email)
     const passwordValueObject = Password.restore(password)

@@ -23,7 +23,7 @@ export class Product {
   }
 
   static create(name: string, category: string): Product {
-    const productId = UUID.create()
+    const productId = new UUID(crypto.randomUUID())
     const productCategory = new ProductCategory(category)
     const createdAt = new Date()
     const updatedAt = new Date()
@@ -37,7 +37,7 @@ export class Product {
     createdAt: Date,
     updatedAt: Date
   ) {
-    const productIdValueObject = UUID.restore(productId)
+    const productIdValueObject = new UUID(productId)
     const productCategory = new ProductCategory(category)
     const createdAtValueObject = new Date(createdAt)
     const updatedAtValueObject = new Date(updatedAt)

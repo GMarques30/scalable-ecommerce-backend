@@ -5,7 +5,7 @@ test.each([
   '550e8400-e29b-41d4-a716-446655440000',
   'f47ac10b-58cc-4372-a567-0e02b2c3d479'
 ])('Should check that it is a valid uuid', function (uuid: string) {
-  expect(UUID.restore(uuid).getUUID()).toEqual(uuid)
+  expect(new UUID(uuid).getUUID()).toEqual(uuid)
 })
 
 test.each([
@@ -15,11 +15,11 @@ test.each([
   'd1c9f8e2-9f5f-4e0e-b634-687d9bc799g3',
   '12345-67890-abcde-fghij-klmno'
 ])('Should check that it is a invalid uuid', function (uuid: string) {
-  expect(() => UUID.restore(uuid)).toThrow(new Error('Invalid UUID.'))
+  expect(() => new UUID(uuid)).toThrow(new Error('Invalid UUID.'))
 })
 
 test('Should be possible to create a UUID', function () {
-  const uuid = UUID.create()
+  const uuid = new UUID(crypto.randomUUID())
   expect(uuid).toBeInstanceOf(UUID)
   expect(uuid.getUUID()).toBeDefined()
 })

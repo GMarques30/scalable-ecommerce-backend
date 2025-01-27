@@ -6,6 +6,10 @@ import { AccountControler } from './account/infra/controller/AccountController'
 import { PgPromiseAdapter } from './account/infra/database/PgPromiseAdapter'
 import { ExpressAdapter } from './account/infra/http/ExpressAdapter'
 import { AccountRepositoryDatabase } from './account/infra/repository/AccountRepositoryDatabase'
+import { AddItem } from './order/application/usecase/AddItem'
+import { RedisAdapter } from './order/infra/cache/RedisAdapter'
+import { OrderController } from './order/infra/controller/OrderController'
+import { CartRepositoryDatabase } from './order/infra/repository/CartRepositoryDatabase'
 import { CreateProduct } from './product-catalog/application/usecase/CreateProduct'
 import { DeleteProduct } from './product-catalog/application/usecase/DeleteProduct'
 import { FetchCategories } from './product-catalog/application/usecase/FetchCategories'
@@ -18,11 +22,13 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
 ;(async () => {
   const httpServer = new ExpressAdapter()
 
+  const cacheConnection = new RedisAdapter()
   const databaseConnection = new PgPromiseAdapter()
   const accountRepository = new AccountRepositoryDatabase(databaseConnection)
   const productCatalogRepository = new ProductCatalogRepositoryDatabase(
     databaseConnection
   )
+  const cartRepository = new CartRepositoryDatabase(cacheConnection)
 
   const productCatalogDAO = new ProductCatalogDAODatabase(databaseConnection)
 
@@ -36,6 +42,7 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
   const deleteProduct = new DeleteProduct(productCatalogRepository)
   const fetchProductDetails = new FetchProductDetails(productCatalogDAO)
   const updateProduct = new UpdateProduct(productCatalogRepository)
+  const addItem = new AddItem(cartRepository)
 
   new AccountControler(httpServer, createAccount, authenticate)
   new ProductCatalogController(
@@ -47,6 +54,7 @@ import { ProductCatalogRepositoryDatabase } from './product-catalog/infra/reposi
     fetchProductDetails,
     updateProduct
   )
+  new OrderController(httpServer, addItem)
 
   httpServer.listen(Number(process.env.PORT))
 })()
